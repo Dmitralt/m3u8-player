@@ -1,70 +1,84 @@
-# Getting Started with Create React App
+Video Player With Chapters
+==========================
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple interactive video player with chapter support, HLS streaming, and basic controls.
 
-## Available Scripts
+--------------------------
+Quick Start
+--------------------------
 
-In the project directory, you can run:
+1. Install dependencies:
+   npm install
 
-### `npm start`
+2. Run the development server:
+   npm run start
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. The app will be available at:
+   http://localhost:3000
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+--------------------------
+Usage
+--------------------------
 
-### `npm test`
+In your App.js file, define a video data object in the following format:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+const videoData = {
+  hlsPlaylistUrl: "https://.../master.m3u8",
+  videoLength: 107,
+  chapters: [
+    { title: "FIRST", start: 0, end: 30 },
+    { title: "SECOND", start: 31, end: 62 },
+    { title: "THIRD", start: 63, end: 95 },
+    { title: "FOUR", start: 96, end: 130 }
+  ]
+};
 
-### `npm run build`
+Then pass this object to the player component like so:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<VideoPlayerWithChapters data={videoData} />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+--------------------------
+Features
+--------------------------
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Play / Pause control
+- Volume control and mute/unmute
+- Display of current playback time
+- Quality selection (based on provided HLS stream levels)
+- Fullscreen mode (exit with the Escape key)
+- Company logo (static, not clickable)
 
-### `npm run eject`
+--------------------------
+Chapters and Progress Bar
+--------------------------
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Hovering over the progress bar highlights the corresponding chapter
+- Tooltip displays chapter title and exact time
+- Clicking the progress bar seeks to the selected time
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+--------------------------
+Data Validation
+--------------------------
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Some basic input validation is included. For better behavior in edge cases, additional specifications are needed, such as:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- What should happen if the start of a chapter is earlier than the end of the previous one
+- What to do if there are time gaps between chapter segments
+- Should invalid time formats or malformed data be ignored or raise errors
 
-## Learn More
+--------------------------
+Structure Overview
+--------------------------
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- VideoPlayerWithChapters: main component that handles layout and logic
+- ControlsBar: UI for controls like play, volume, fullscreen, quality
+- ProgressBarWithChapters: displays chapters on a timeline and handles seeking
+- VideoElement: video element abstraction
+- hooks/: custom React hooks for HLS setup, volume control, and fullscreen toggle
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+--------------------------
+Default Port
+--------------------------
 
-### Code Splitting
+Runs on port 3000 by default.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
