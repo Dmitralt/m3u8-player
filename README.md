@@ -7,6 +7,8 @@ A simple interactive video player with chapter support, HLS streaming, and basic
 Quick Start
 --------------------------
 
+After downloading:
+
 1. Install dependencies:
    npm install
 
@@ -20,7 +22,7 @@ Quick Start
 Usage
 --------------------------
 
-In your App.js file, define a video data object in the following format:
+To test with your own playlist, use the file App.js. There, define a video data object in the following format:
 
 const videoData = {
   hlsPlaylistUrl: "https://.../master.m3u8",
@@ -60,25 +62,34 @@ Chapters and Progress Bar
 Data Validation
 --------------------------
 
-Some basic input validation is included. For better behavior in edge cases, additional specifications are needed, such as:
+Some basic input validation is included. Edge cases like incorrect time or missing values are accounted for. However, for production-grade implementation, further specification is needed:
 
-- What should happen if the start of a chapter is earlier than the end of the previous one
-- What to do if there are time gaps between chapter segments
-- Should invalid time formats or malformed data be ignored or raise errors
+- What to do if the start time of a chapter is earlier than the end of the previous one
+- What to do if there is a gap between the end of one chapter and the start of another
+- Should invalid formats or out-of-range values be ignored or blocked
+- What Unicode characters are allowed (emoji, foreign languages, special symbols, etc.)
+- What maximum text lengths should be enforced
 
 --------------------------
-Structure Overview
+Design and Interaction Notes
 --------------------------
 
-- VideoPlayerWithChapters: main component that handles layout and logic
-- ControlsBar: UI for controls like play, volume, fullscreen, quality
-- ProgressBarWithChapters: displays chapters on a timeline and handles seeking
-- VideoElement: video element abstraction
-- hooks/: custom React hooks for HLS setup, volume control, and fullscreen toggle
+- Fullscreen exits via Escape key because the mockup did not include a "return" or "exit fullscreen" button
+- Responsive design is limited; the layout follows mockup dimensions but includes basic resizing behavior
+- The logo quality might be imperfect due to limited experience with Figma; in earlier frontend work Photoshop or verbal descriptions were used
+- UI controls are based on standard React libraries. The volume control is lightly customized to match the style. Since the mockup did not show the expanded view, this was implemented at developer discretion
+
+--------------------------
+Testing and Production Notes
+--------------------------
+
+No unit tests or integration tests are included. For demonstration purposes this is likely sufficient, but for real-world use the component should be completed with:
+- additional validation
+- clarified requirements
+- a suite of automated tests
 
 --------------------------
 Default Port
 --------------------------
 
 Runs on port 3000 by default.
-
