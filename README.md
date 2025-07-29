@@ -76,7 +76,6 @@ Design and Interaction Notes
 
 - Fullscreen exits via Escape key because the mockup did not include a "return" or "exit fullscreen" button
 - Responsive design is limited; the layout follows mockup dimensions but includes basic resizing behavior
-- The logo quality might be imperfect due to limited experience with Figma; in earlier frontend work Photoshop or verbal descriptions were used
 - UI controls are based on standard React libraries. The volume control is lightly customized to match the style. Since the mockup did not show the expanded view, this was implemented at developer discretion
 
 --------------------------

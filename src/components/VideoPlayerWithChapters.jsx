@@ -31,7 +31,11 @@ const VideoPlayerWithChapters = ({ data }) => {
         handleMouseLeave,
     } = useVolumeControl(videoRef);
 
-    const { isFullscreen, enterFullscreen } = useFullscreen(containerRef);
+    const {
+        isFullscreen,
+        toggleFullscreen,
+    } = useFullscreen(containerRef);
+
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [currentTime, setCurrentTime] = useState(0);
@@ -178,7 +182,7 @@ const VideoPlayerWithChapters = ({ data }) => {
                         selectedQuality={selectedQuality}
                         setQuality={setQuality}
                         isFullscreen={isFullscreen}
-                        enterFullscreen={enterFullscreen}
+                        toggleFullscreen={toggleFullscreen}
                     />
                 </div>
             </div>

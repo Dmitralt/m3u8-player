@@ -14,13 +14,18 @@
     display: flex;
     justify-content: center;
     padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
+
 
 .video-container {
     position: relative;
-    width: 960px;
-    height: 540px;
+    width: 100%;
+    max-width: 960px;
+    aspect-ratio: 16 / 9;
 }
+
 
 video {
     width: 100%;

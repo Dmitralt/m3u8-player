@@ -21,5 +21,19 @@ export const useFullscreen = (elementRef) => {
         }
     };
 
-    return { isFullscreen, enterFullscreen };
+    const exitFullscreen = () => {
+        if (document.fullscreenElement && document.exitFullscreen) {
+            document.exitFullscreen();
+        }
+    };
+
+    const toggleFullscreen = () => {
+        if (document.fullscreenElement) {
+            exitFullscreen();
+        } else {
+            enterFullscreen();
+        }
+    };
+
+    return { isFullscreen, enterFullscreen, exitFullscreen, toggleFullscreen };
 };

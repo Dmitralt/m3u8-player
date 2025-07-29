@@ -1,5 +1,3 @@
-// src/components/ControlsBar.jsx
-import React from "react";
 import {
     FaPlay,
     FaPause,
@@ -7,8 +5,8 @@ import {
     FaVolumeUp,
     FaCog,
     FaExpand,
+    FaCompress,
 } from "react-icons/fa";
-
 const ControlsBar = ({
     isPlaying,
     handlePlayPause,
@@ -27,7 +25,7 @@ const ControlsBar = ({
     selectedQuality,
     setQuality,
     isFullscreen,
-    enterFullscreen,
+    toggleFullscreen,
 }) => {
     return (
         <div className="controls-bar">
@@ -100,11 +98,15 @@ const ControlsBar = ({
                     )}
                 </div>
 
-                {!isFullscreen && (
-                    <button onClick={enterFullscreen}>
+
+                <button onClick={toggleFullscreen}>
+                    {isFullscreen ? (
+                        <FaCompress color="white" size={20} />
+                    ) : (
                         <FaExpand color="white" size={20} />
-                    </button>
-                )}
+                    )}
+                </button>
+
 
                 <div className="placeholder-box" />
             </div>
